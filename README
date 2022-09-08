@@ -1,0 +1,24 @@
+//find a students
+db.students.find({})
+
+//update one students => So i updated Matthew in students in school
+db.students.updateOne({"_id": ObjectId("63188b4755c10ee4ee56cba1")}, {
+$set:{age: 11, class: 5}
+})
+
+//Promoting students to higher levels// set class 2 moves all class one students to class tow
+db.students.updateMany({class: 1} , {
+ $set:{class:2} 
+ })
+ 
+ 
+ 
+ //Delete a student from the database
+ db.students.deleteOne({"_id": ObjectId("63188b4755c10ee4ee56cba1")})
+ 
+
+
+							//ORM - Object Relational Markup
+							1.Mongoose
+							2.TypeORM
+			//learn Prisma		3.prisma (both relational and non-relational)
