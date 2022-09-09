@@ -1,22 +1,28 @@
 const express = require("express");
-const {dbConnect} = require("./config/db.Connect")
-const userRouter = require("./routes/users.route")
+const productsRouter = require("./routes/products.route")
+const { dbConnect } = require("./config/dbConnect")
 
 
 const app = express();
 
-app.get("/" , (req ,res) => {
-    res.status(200).send("Welcome to my server. Please use /users ")
+app.use(express.json())
+
+
+app.get("/", (req, res) => {
+    res.status(200).send("Welcome to my products server, Please use /products ")
 })
 
-app.use("/users", userRouter)
+app.use(("/products"), productsRouter);
 
-async function start(){
+async function start() {
     await dbConnect();
 
-app.listen(4000, (err) =>{
-    console.log("Server is running on https://localhost:4000")
-})
+
+
+    app.listen(4000, (err) => {
+        console.log("Server is running on https://localhost:4000")
+    })
+
 }
 
 start();
